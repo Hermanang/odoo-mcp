@@ -32,7 +32,7 @@ def main() -> int:
         sys.stderr.flush()  # Ensure log information is written immediately
         
         # Use the run() method directly
-        mcp.run()
+        mcp.run(transport='sse')
         
         # If execution reaches here, the server exited normally
         print("MCP server stopped normally", file=sys.stderr)

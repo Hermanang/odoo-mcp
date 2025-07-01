@@ -219,7 +219,7 @@ def execute_method(
     method: str,
     args: List = None,
     kwargs: Optional[Dict[str, Any]] = None,
-) -> Dict[str, Any]:
+) -> dict:
     """
     Execute a custom method on an Odoo model
 

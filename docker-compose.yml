@@ -1,0 +1,14 @@
+services:
+  mcpo:
+    build: .
+    container_name: mcp_odoo_server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./odoo_config.json:/app/odoo_config.json
+      - ./src:/app/src # Pour developpement / A retirer en production
+    environment:
+      ODOO_URL: ${ODOO_URL:-http://localhost:8069}
+      ODOO_DB: ${ODOO_DB:-odoodb}
+      ODOO_USERNAME: ${ODOO_USERNAME:-admin}
+      ODOO_PASSWORD: ${ODOO_PASSWORD:-admin}

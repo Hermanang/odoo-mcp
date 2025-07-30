@@ -212,7 +212,8 @@ class SearchHolidaysResponse(BaseModel):
 # ----- MCP Tools -----
 
 
-@mcp.tool(description="Execute a custom method on an Odoo model")
+@mcp.tool(description="Appelle une méthode comme 'search_read', 'read' ou 'write' sur un modèle Odoo (ex : "
+                      "'crm.lead') pour lire ou modifier des enregistrements.")
 def execute_method(
     ctx: Context,
     model: str,

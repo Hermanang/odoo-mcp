@@ -221,19 +221,31 @@ def execute_method(
     kwargs: Optional[Dict[str, Any]] = None,
 ) -> dict:
     """
-    Execute a custom method on an Odoo model
+    Utilise le client Odoo pour appeler dynamiquement une méthode sur n'importe quel modèle.
 
     Parameters:
-        model: The model name (e.g., 'res.partner')
-        method: Method name to execute
-        args: Positional arguments
-        kwargs: Keyword arguments
+        model (str): Nom du modèle Odoo, par exemple 'crm.lead', 'res.partner', etc.
+        method (str): Nom de la méthode Odoo à appeler, comme 'search_read', 'read', ou 'write'.
+        args (List): Liste des arguments positionnels, par exemple :
+            - [['id', '=', 42]] pour un domaine
+            - ['name', 'email'] pour des champs
+        kwargs (Dict): Dictionnaire d'arguments nommés (optionnels), comme :
+            - {'limit': 1, 'order': 'create_date desc'}
+
+    Exemple d'appel :
+        model = 'crm.lead'
+        method = 'search_read'
+        args = [
+            [["name", "=", "OPP-023"]],
+            ["id", "name", "expected_revenue"]
+        ]
+        kwargs = {"limit": 1}
 
     Returns:
-        Dictionary containing:
-        - success: Boolean indicating success
-        - result: Result of the method (if success)
-        - error: Error message (if failure)
+        Dict:
+            - success (bool): True si la méthode a été exécutée avec succès.
+            - result (Any): Résultat de la méthode Odoo.
+            - error (str, optionnel): Message d'erreur si échec.
     """
     odoo = ctx.request_context.lifespan_context.odoo
     try:
